@@ -23,6 +23,7 @@
 @property (nonatomic)BOOL isLeapYear;//YES 为闰年，NO 为平年
 @property (nonatomic,strong)NSArray *monthArray;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelToTop;
+
 @property (weak, nonatomic) IBOutlet UILabel *percentLabel;
 @property (nonatomic) CGFloat percentage;
 @property (nonatomic,strong) NSString *percentStr;
