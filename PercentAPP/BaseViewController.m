@@ -39,7 +39,7 @@
  */
 - (UIImage*) GetImageWithColor:(UIColor*)color andHeight:(CGFloat)height
 {
-    CGRect r= CGRectMake(0.0f, 0.0f, 1.0f, height);
+    CGRect r= CGRectMake(0.0f, 0.0f, height, height);
     UIGraphicsBeginImageContext(r.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -52,7 +52,71 @@
     return img;
 }
 
+//- (UIImage *)createShareImage:(NSString *)str name:(NSString *)name number:(NSString *)number grade:(NSString *)grade
+//
+//{
+//    
+//    UIImage *image = [self GetImageWithColor:[UIColor whiteColor] andHeight:100];
+//    
+//    CGSize size=CGSizeMake(image.size.width, image.size.height);//画布大小
+//    
+//    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+//    
+//    [image drawAtPoint:CGPointMake(0, 0)];
+//    
+//    //获得一个位图图形上下文
+//    
+//    CGContextRef context=UIGraphicsGetCurrentContext();
+//    
+//    CGContextDrawPath(context, kCGPathStroke);
+//    
+//    
+//    
+//    //画 打败了多少用户
+//    
+//    [str drawAtPoint:CGPointMake(30, image.size.height*0.65) withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:30],NSForegroundColorAttributeName:[UIColor blackColor]}];
+//    
+//    //画自己想画的内容。。。。。
+//    
+//    //返回绘制的新图形
+//    
+//    UIImage *newImage=UIGraphicsGetImageFromCurrentImageContext();
+//    
+//    UIGraphicsEndImageContext();
+//    
+//    return newImage;
+//    
+//}
 
+- (UIImage *)imageWithTitle:(NSString *)title fontSize:(CGFloat)fontSize {
+    UIImage *img = [self GetImageWithColor:[UIColor whiteColor] andHeight:100];
+    //画布大小
+    CGSize size=CGSizeMake(img.size.width,img.size.height);
+    //创建一个基于位图的上下文
+    UIGraphicsBeginImageContextWithOptions(size,NO,0.0);//opaque:NO  scale:0.0
+    
+    [img drawAtPoint:CGPointMake(0.0,0.0)];
+    
+    //文字居中显示在画布上
+    NSMutableParagraphStyle* paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paragraphStyle.alignment=NSTextAlignmentCenter;//文字居中
+    
+    //计算文字所占的size,文字居中显示在画布上
+    CGSize sizeText=[title boundingRectWithSize:img.size options:NSStringDrawingUsesLineFragmentOrigin
+                                     attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}context:nil].size;
+    CGFloat width = img.size.width;
+    CGFloat height = img.size.height;
+    
+    CGRect rect = CGRectMake((width-sizeText.width)/2, (height-sizeText.height)/2, sizeText.width, sizeText.height);
+    //绘制文字
+    [title drawInRect:rect withAttributes:@{ NSFontAttributeName:[UIFont systemFontOfSize:fontSize],NSForegroundColorAttributeName:[ UIColor blackColor],NSParagraphStyleAttributeName:paragraphStyle}];
+    
+    //返回绘制的新图形
+    UIImage *newImage= UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 //-(void)makeCehua{
 //    id target = self.navigationController.interactivePopGestureRecognizer.delegate;

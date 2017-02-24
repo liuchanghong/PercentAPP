@@ -15,7 +15,7 @@
 //自定义分享编辑界面所需要导入的头文件
 #import <ShareSDKUI/SSUIEditorViewStyle.h>
 //#import "UICountingLabel.h"
-
+#import "MozTopAlertView.h"
 
 @interface DayViewController ()
 @property (weak, nonatomic) IBOutlet STLoopProgressView *loopProgressView;
@@ -25,17 +25,23 @@
 @property (nonatomic) CGFloat percentage;
 @property (nonatomic,strong) NSString *percentStr;
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
+@property (nonatomic,strong) NSString *whichTimeStr;
 @end
 
 @implementation DayViewController
 
 - (IBAction)infoButton:(id)sender {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"要不要加我微信" message:@"HOMGEEK" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"复制到剪贴板" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[UIPasteboard generalPasteboard] setString:@"homgeek"];
-    }];
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    [MozTopAlertView showWithType:MozAlertTypeInfo
+                             text:@"要不要加我微信?"
+                           doText:@"复制到剪贴板"
+                          doBlock:^{
+                              [[UIPasteboard generalPasteboard] setString:@"HOMGEEK"];
+                              [MozTopAlertView showWithType:MozAlertTypeInfo
+                                                       text:@"复制成功，去粘贴吧"
+                                                 parentView:self.view];
+                              
+                          }
+                       parentView:self.view];
 }
 
 -(void)dataInit{
@@ -44,18 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _labelToTop.constant = (SCREEN_HEIGHT/2 - 150) / 2 - 20;
-    
-//    UICountingLabel *countingLabel = [[UICountingLabel alloc]initWithFrame:CGRectMake(0, 0, 200, 46)];
-//    countingLabel.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2-25);
-//    countingLabel.textAlignment = NSTextAlignmentCenter;
-//    countingLabel.textColor = [UIColor whiteColor];
-//    countingLabel.font = GHFont(30);
-//    [self.view addSubview:countingLabel];
-//    countingLabel.format = @"%.6f %%";
-//    [countingLabel countFrom:0.000000 to: _percentage*100 withDuration:2.0f];
-    
+    _labelToTop.constant = (SCREEN_HEIGHT / 2 - 150) / 2 - 20;
     [self dataInit];
     self.loopProgressView.persentage = _percentage;
     _percentLabel.text = [NSString stringWithFormat:@"%.6f %%",_percentage*100];
@@ -64,7 +59,7 @@
         _bottomLabel.text = @"(¦3[▓▓]\n请抓紧，钻被窝睡觉吧";
     }else if (_percentage > 0.1 && _percentage <= 0.2){
         _percentStr = [NSString stringWithFormat:@"■■□□□□□□□□ %.2f%%",_percentage*100];
-        _bottomLabel.text = @"(¦3[▓▓]\n请抓紧，钻被窝睡觉吧";
+        _bottomLabel.text = @"(¦3[▓▓]\n请抓紧，钻被窝睡觉吧，再不睡就该起床了";
     }else if (_percentage > 0.2 && _percentage <= 0.3){
         _percentStr = [NSString stringWithFormat:@"■■■□□□□□□□ %.2f%%",_percentage*100];
         _bottomLabel.text = @"..._〆(°▽°*)\n请抓紧，准备准备起床吧";
@@ -104,60 +99,50 @@
     if (_percentage <= 0.1) {
         _percentStr = [NSString stringWithFormat:@"■□□□□□□□□□ %.2f%%",_percentage*100];
         _bottomLabel.text = @"(¦3[▓▓]\n请抓紧，钻被窝睡觉吧";
-
     }else if (_percentage > 0.1 && _percentage <= 0.2){
         _percentStr = [NSString stringWithFormat:@"■■□□□□□□□□ %.2f%%",_percentage*100];
-        _bottomLabel.text = @"(¦3[▓▓]\n请抓紧，钻被窝睡觉吧";
-
+        _bottomLabel.text = @"(¦3[▓▓]\n请抓紧，钻被窝睡觉吧，再不睡就该起床了";
     }else if (_percentage > 0.2 && _percentage <= 0.3){
         _percentStr = [NSString stringWithFormat:@"■■■□□□□□□□ %.2f%%",_percentage*100];
         _bottomLabel.text = @"..._〆(°▽°*)\n请抓紧，准备准备起床吧";
-
     }else if (_percentage > 0.3 && _percentage <= 0.4){
         _percentStr = [NSString stringWithFormat:@"■■■■□□□□□□ %.2f%%",_percentage*100];
         _bottomLabel.text = @"٩(｡・ω・｡)﻿و\n请抓紧，决定一下今天都要干什么吧";
-
     }else if (_percentage > 0.4 && _percentage <= 0.5){
         _percentStr = [NSString stringWithFormat:@"■■■■■□□□□□ %.2f%%",_percentage*100];
         _bottomLabel.text = @"┬─┬ ノ( ' - 'ノ)\n请抓紧，想想午饭吃什么吧";
-
     }else if (_percentage > 0.5 && _percentage <= 0.6){
         _percentStr = [NSString stringWithFormat:@"■■■■■■□□□□ %.2f%%",_percentage*100];
         _bottomLabel.text = @"┌(ㆆ㉨ㆆ)ʃ\n请抓紧，精神一下继续努力吧";
-
     }else if (_percentage > 0.6 && _percentage <= 0.7){
         _percentStr = [NSString stringWithFormat:@"■■■■■■■□□□ %.2f%%",_percentage*100];
         _bottomLabel.text = @"(∩^o^)⊃━☆ﾟ.*･｡\n请不要总想着晚上去哪儿玩的事";
-
     }else if (_percentage > 0.7 && _percentage <= 0.8){
         _percentStr = [NSString stringWithFormat:@"■■■■■■■■□□ %.2f%%",_percentage*100];
         _bottomLabel.text = @"｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡\n请抓紧，该吃吃该喝喝该锻炼就去锻炼吧";
-
     }else if (_percentage > 0.8 && _percentage <= 0.9){
         _percentStr = [NSString stringWithFormat:@"■■■■■■■■■□ %.2f%%",_percentage*100];
         _bottomLabel.text = @"（⺻▽⺻ ）\n请抓紧，洗澡上床读书吧\n长得好看就少读会儿，长得丑就多读会儿";
-
+        
     }else{
         _percentStr = [NSString stringWithFormat:@"■■■■■■■■■■ %.2f%%",_percentage*100];
         _bottomLabel.text = @"(¦3[▓▓]\n请抓紧，钻被窝睡觉吧";
-
     }
 }
 
 - (IBAction)shareButtonClick:(id)sender {
     //1、创建分享参数
-    NSArray* imageArray = @[[UIImage imageNamed:@"day-black.png"]];
+    NSArray* imageArray = @[[UIImage imageNamed:@"day-1.png"]];
     //（注意：图片必须要在Xcode左边目录里面，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
     if (imageArray) {
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"‵(*∩_∩*)′ 獻上我最可愛的笑容"]
-                                         images:imageArray
+        [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"今天已经过去了\n%@",_percentStr]
+                                         images:[self imageWithTitle:_whichTimeStr fontSize:18]
                                             url:[NSURL URLWithString:@"https://liuchanghong.github.io/"]
                                           title:[NSString stringWithFormat:@"今天已经过去了\n%@",_percentStr]
-                                           type:SSDKContentTypeApp];
+                                           type:SSDKContentTypeAuto];
         //有的平台要客户端分享需要加此方法，例如微博
         [shareParams SSDKEnableUseClientShare];
-        
         // 设置分享菜单的背景颜色
         //        [SSUIShareActionSheetStyle setActionSheetBackgroundColor:[UIColor colorWithRed:249/255.0 green:0/255.0 blue:12/255.0 alpha:0.5]];//大背景
         // 设置分享菜单颜色
@@ -168,41 +153,46 @@
         [SSUIShareActionSheetStyle setCancelButtonLabelColor:[UIColor whiteColor]];
         // 设置分享菜单－社交平台文本颜色
         [SSUIShareActionSheetStyle setItemNameColor:[UIColor whiteColor]];
-        
-        //2、分享（可以弹出我们的分享菜单和编辑界面）
-        [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
-                                 items:@[
-                                         @(SSDKPlatformSubTypeWechatSession),
-                                         @(SSDKPlatformSubTypeWechatTimeline)
-                                         ]
-                           shareParams:shareParams
-                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
-                       switch (state) {
-                           case SSDKResponseStateSuccess:
-                           {
-                               UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
-                                                                                   message:nil
-                                                                                  delegate:nil
-                                                                         cancelButtonTitle:@"确定"
-                                                                         otherButtonTitles:nil];
-                               [alertView show];
-                               break;
-                           }
-                           case SSDKResponseStateFail:
-                           {
-                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                               message:[NSString stringWithFormat:@"%@",error]
-                                                                              delegate:nil
-                                                                     cancelButtonTitle:@"OK"
-                                                                     otherButtonTitles:nil, nil];
-                               [alert show];
-                               break;
-                           }
-                           default:
-                               break;
-                       }
-                   }
-         ];
+        //设置分享编辑界面的导航栏颜色
+        [SSUIEditorViewStyle setiPhoneNavigationBarBackgroundColor:[UIColor blackColor]];
+        //设置编辑界面标题颜色
+        [SSUIEditorViewStyle setTitleColor:[UIColor whiteColor]];
+        //设置取消发布标签文本颜色
+        [SSUIEditorViewStyle setCancelButtonLabelColor:[UIColor whiteColor]];
+        [SSUIEditorViewStyle setShareButtonLabelColor:[UIColor whiteColor]];
+        //调用分享的方法
+        SSUIShareActionSheetController *sheet = [ShareSDK showShareActionSheet:nil
+                                                                         items:@[
+                                                                                 @(SSDKPlatformSubTypeWechatSession),
+                                                                                 @(SSDKPlatformSubTypeWechatTimeline),
+                                                                                 @(SSDKPlatformTypeSinaWeibo)
+                                                                                 ]
+                                                                   shareParams:shareParams
+                                                           onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                                                               switch (state) {
+                                                                   case SSDKResponseStateSuccess:
+                                                                       NSLog(@"分享成功!");
+                                                                       [MozTopAlertView showWithType:MozAlertTypeInfo
+                                                                                                text:@"分享成功"
+                                                                                          parentView:self.view];
+                                                                       break;
+                                                                   case SSDKResponseStateFail:
+                                                                       NSLog(@"分享失败%@",error);
+                                                                       [MozTopAlertView showWithType:MozAlertTypeInfo
+                                                                                                text:@"分享失败"
+                                                                                          parentView:self.view];
+                                                                       break;
+                                                                   case SSDKResponseStateCancel:
+                                                                       NSLog(@"分享已取消");
+                                                                       [MozTopAlertView showWithType:MozAlertTypeInfo
+                                                                                                text:@"分享已取消"
+                                                                                          parentView:self.view];
+                                                                       break;
+                                                                   default:
+                                                                       break;
+                                                               }
+                                                           }];
+        [sheet.directSharePlatforms addObject:@(SSDKPlatformTypeSinaWeibo)];
     }
 }
 
@@ -219,20 +209,7 @@
     NSArray *timeArray = [NSArray array];
     timeArray = [cTime componentsSeparatedByString:@"-"];
     return  timeArray;
-    
 }
-
-//判断是否为闰年
-//-(BOOL)isLeapYearOrNot:(NSInteger)year{
-//    //判断是否闰年
-//    if (year % 400 == 0) {
-//        return YES;
-//    }else if (year % 4 == 0 && year % 100 != 0){
-//        return YES;
-//    }else {
-//        return NO;
-//    }
-//}
 
 //计算此时是今日的啥时候
 - (float)whichDayIsToday_percent{
@@ -244,21 +221,14 @@
     NSString *secondStr = timeArray[2];
     int secondInt = secondStr.intValue;
     NSLog(@"%@-%@-%@",hourStr,minuteStr,secondStr);
+    _whichTimeStr = [NSString stringWithFormat:@"%@点%@分",hourStr,minuteStr];
     //现在是第几秒
     int howMucSecond = hourInt * 3600 + minuteInt *60 + secondInt;
-    
     return howMucSecond/86400.0;
-    
 }
-
-//- (IBAction)sliderValueChanged:(UISlider *)sender {
-////    NSLog(@"%f",sender.value);
-//    self.loopProgressView.persentage = sender.value;
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

@@ -8,7 +8,6 @@
 
 #import "YearViewController.h"
 #import "STLoopProgressView.h"
-#import "BaseViewController.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 // 自定义分享菜单栏需要导入的头文件
@@ -16,28 +15,34 @@
 //自定义分享编辑界面所需要导入的头文件
 #import <ShareSDKUI/SSUIEditorViewStyle.h>
 #import "UICountingLabel.h"
-//rrrrr
+#import "MozTopAlertView.h"
+
 @interface YearViewController ()
-//@property (nonatomic) CGFloat progress;
+
 @property (weak, nonatomic) IBOutlet STLoopProgressView *loopProgressView;
 @property (nonatomic)BOOL isLeapYear;//YES 为闰年，NO 为平年
 @property (nonatomic,strong)NSArray *monthArray;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelToTop;
-
 @property (weak, nonatomic) IBOutlet UILabel *percentLabel;
 @property (nonatomic) CGFloat percentage;
 @property (nonatomic,strong) NSString *percentStr;
+@property (nonatomic,strong) NSString *whichYearString;
 
 @end
 
 @implementation YearViewController
+
 - (IBAction)infoButtonClick:(id)sender {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"要不要加我微信" message:@"HOMGEEK" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"复制到剪贴板" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[UIPasteboard generalPasteboard] setString:@"homgeek"];
-    }];
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    [MozTopAlertView showWithType:MozAlertTypeInfo
+                             text:@"要不要加我微信?"
+                           doText:@"复制到剪贴板"
+                          doBlock:^{
+                              [[UIPasteboard generalPasteboard] setString:@"homgeek"];
+                              [MozTopAlertView showWithType:MozAlertTypeInfo
+                                                       text:@"复制成功，去粘贴吧"
+                                                 parentView:self.view];
+                          }
+                       parentView:self.view];
 }
 
 -(void)dataInit{
@@ -82,19 +87,19 @@
     }
 }
 - (IBAction)shareButtonClick:(id)sender {
+    
     //1、创建分享参数
-    NSArray* imageArray = @[[UIImage imageNamed:@"year-black.png"]];
+    NSArray* imageArray = @[[UIImage imageNamed:@"year-1.png"]];
     //（注意：图片必须要在Xcode左边目录里面，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
     if (imageArray) {
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"（⺻▽⺻ ）我在看書，你呢"]
-                                         images:imageArray
+        [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"今年已经过去了\n%@",_percentStr]
+                                         images:[self imageWithTitle:_whichYearString fontSize:18]
                                             url:[NSURL URLWithString:@"https://liuchanghong.github.io/"]
                                           title:[NSString stringWithFormat:@"今年已经过去了\n%@",_percentStr]
                                            type:SSDKContentTypeAuto];
         //有的平台要客户端分享需要加此方法，例如微博
         [shareParams SSDKEnableUseClientShare];
-        
         // 设置分享菜单的背景颜色
 //        [SSUIShareActionSheetStyle setActionSheetBackgroundColor:[UIColor colorWithRed:249/255.0 green:0/255.0 blue:12/255.0 alpha:0.5]];//大背景
         // 设置分享菜单颜色
@@ -105,41 +110,46 @@
         [SSUIShareActionSheetStyle setCancelButtonLabelColor:[UIColor whiteColor]];
         // 设置分享菜单－社交平台文本颜色
         [SSUIShareActionSheetStyle setItemNameColor:[UIColor whiteColor]];
-        
-        //2、分享（可以弹出我们的分享菜单和编辑界面）
-        [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
-                                 items:@[
-                                         @(SSDKPlatformSubTypeWechatSession),
-                                         @(SSDKPlatformSubTypeWechatTimeline)
-                                         ]
-                           shareParams:shareParams
-                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
-                       switch (state) {
-                           case SSDKResponseStateSuccess:
-                           {
-                               UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
-                                                                                   message:nil
-                                                                                  delegate:nil
-                                                                         cancelButtonTitle:@"确定"
-                                                                         otherButtonTitles:nil];
-                               [alertView show];
-                               break;
-                           }
-                           case SSDKResponseStateFail:
-                           {
-                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                               message:[NSString stringWithFormat:@"%@",error]
-                                                                              delegate:nil
-                                                                     cancelButtonTitle:@"OK"
-                                                                     otherButtonTitles:nil, nil];
-                               [alert show];
-                               break;
-                           }
-                           default:
-                               break;
-                       }
-                   }
-         ];
+        //设置分享编辑界面的导航栏颜色
+        [SSUIEditorViewStyle setiPhoneNavigationBarBackgroundColor:[UIColor blackColor]];
+        //设置编辑界面标题颜色
+        [SSUIEditorViewStyle setTitleColor:[UIColor whiteColor]];
+        //设置取消发布标签文本颜色
+        [SSUIEditorViewStyle setCancelButtonLabelColor:[UIColor whiteColor]];
+        [SSUIEditorViewStyle setShareButtonLabelColor:[UIColor whiteColor]];
+        //调用分享的方法
+        SSUIShareActionSheetController *sheet = [ShareSDK showShareActionSheet:nil
+                                                                         items:@[
+                                                                                 @(SSDKPlatformSubTypeWechatSession),
+                                                                                 @(SSDKPlatformSubTypeWechatTimeline),
+                                                                                 @(SSDKPlatformTypeSinaWeibo)
+                                                                                 ]
+                                                                   shareParams:shareParams
+                                                           onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                                                               switch (state) {
+                                                                   case SSDKResponseStateSuccess:
+                                                                       NSLog(@"分享成功!");
+                                                                       [MozTopAlertView showWithType:MozAlertTypeInfo
+                                                                                                text:@"分享成功"
+                                                                                          parentView:self.view];
+                                                                       break;
+                                                                   case SSDKResponseStateFail:
+                                                                       NSLog(@"分享失败%@",error);
+                                                                       [MozTopAlertView showWithType:MozAlertTypeInfo
+                                                                                                text:@"分享失败"
+                                                                                          parentView:self.view];
+                                                                       break;
+                                                                   case SSDKResponseStateCancel:
+                                                                       NSLog(@"分享已取消");
+                                                                       [MozTopAlertView showWithType:MozAlertTypeInfo
+                                                                                                text:@"分享已取消"
+                                                                                          parentView:self.view];
+                                                                       break;
+                                                                   default:
+                                                                       break;
+                                                               }
+                                                           }];
+        [sheet.directSharePlatforms addObject:@(SSDKPlatformTypeSinaWeibo)];
     }
 }
 
@@ -156,7 +166,6 @@
     NSArray *timeArray = [NSArray array];
     timeArray = [cTime componentsSeparatedByString:@"-"];
     return  timeArray;
-    
 }
 
 //判断是否为闰年
@@ -175,16 +184,14 @@
 - (float)whichDayIsToday_percent{
     NSArray *timeArray = [self getSystemTime];
     NSString *yearStr = timeArray[0];
+    _whichYearString = [NSString stringWithFormat:@"%@ 年",yearStr];
     int yearInt = yearStr.intValue;
     NSString *monthStr = timeArray[1];
     int monthInt = monthStr.intValue;
     NSString *dayStr = timeArray[2];
     int dayInt = dayStr.intValue;
-    
     _isLeapYear = [self isLeapYearOrNot:yearInt];
-    
     int whichDay = 0;
-    
     if (_isLeapYear) {
         _monthArray = @[@"31",@"29",@"31",@"30",@"31",@"30",@"31",@"31",@"30",@"31",@"30",@"31"];
         for (int i = 0; i < monthInt-1; i++) {
@@ -203,17 +210,10 @@
         NSLog(@"%f",whichDay/365.0);
         return whichDay/365.0;
     }
-    
 }
-
-//- (IBAction)sliderValueChanged:(UISlider *)sender {
-////    NSLog(@"%f",sender.value);
-//    self.loopProgressView.persentage = sender.value;
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

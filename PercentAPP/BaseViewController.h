@@ -26,4 +26,5 @@
 -(UIImage*)GetImageWithColor:(UIColor*)color andHeight:(CGFloat)height;
 //毛玻璃
 +(UIImage *)coreBlurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
+- (UIImage *)imageWithTitle:(NSString *)title fontSize:(CGFloat)fontSize;
 @end

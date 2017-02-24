@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface YearViewController : UIViewController
+
+@interface YearViewController : BaseViewController
 
 @end

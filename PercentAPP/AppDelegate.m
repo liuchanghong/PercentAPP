@@ -10,6 +10,7 @@
 #import <ShareSDKConnector/ShareSDKConnector.h>
 //微信SDK头文件
 #import "WXApi.h"
+#import "WeiboSDK.h"
 
 @interface AppDelegate ()
 
@@ -30,13 +31,17 @@
      
           activePlatforms:@[
                             @(SSDKPlatformSubTypeWechatSession),
-                            @(SSDKPlatformSubTypeWechatTimeline)]
+                            @(SSDKPlatformSubTypeWechatTimeline),
+                            @(SSDKPlatformTypeSinaWeibo)]
                  onImport:^(SSDKPlatformType platformType)
      {
          switch (platformType)
          {
              case SSDKPlatformTypeWechat:
                  [ShareSDKConnector connectWeChat:[WXApi class]];
+                 break;
+             case SSDKPlatformTypeSinaWeibo:
+                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
                  break;
              default:
                  break;
@@ -50,6 +55,13 @@
             case SSDKPlatformTypeWechat:
                  [appInfo SSDKSetupWeChatByAppId:@"wxd3750c0ff3ec574d"
                                        appSecret:@"7235a6c2a5b46b8846272f313b43ac3d"];
+                 break;
+             case SSDKPlatformTypeSinaWeibo:
+                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                 [appInfo SSDKSetupSinaWeiboByAppKey:@"1793527049"
+                                           appSecret:@"82a315c6c25f698291b8a62e2914bc42"
+                                         redirectUri:@"https://liuchanghong.github.io"
+                                            authType:SSDKAuthTypeBoth];
                  break;
             default:
                  break;
