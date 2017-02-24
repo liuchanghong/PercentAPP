@@ -16,7 +16,7 @@
 //自定义分享编辑界面所需要导入的头文件
 #import <ShareSDKUI/SSUIEditorViewStyle.h>
 #import "UICountingLabel.h"
-
+//rrrrr
 @interface YearViewController ()
 //@property (nonatomic) CGFloat progress;
 @property (weak, nonatomic) IBOutlet STLoopProgressView *loopProgressView;
