@@ -32,7 +32,11 @@
           activePlatforms:@[
                             @(SSDKPlatformSubTypeWechatSession),
                             @(SSDKPlatformSubTypeWechatTimeline),
-                            @(SSDKPlatformTypeSinaWeibo)]
+                            @(SSDKPlatformTypeSinaWeibo),
+                            @(SSDKPlatformTypeQQ),
+                            @(SSDKPlatformTypeMail),
+                            @(SSDKPlatformTypeSMS),
+                            @(SSDKPlatformTypeCopy)]
                  onImport:^(SSDKPlatformType platformType)
      {
          switch (platformType)
@@ -62,6 +66,11 @@
                                            appSecret:@"82a315c6c25f698291b8a62e2914bc42"
                                          redirectUri:@"https://liuchanghong.github.io"
                                             authType:SSDKAuthTypeBoth];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [appInfo SSDKSetupQQByAppId:@"1106008938"
+                                      appKey:@"aRbSvpJhXq2EjrQY"
+                                    authType:SSDKAuthTypeBoth];
                  break;
             default:
                  break;

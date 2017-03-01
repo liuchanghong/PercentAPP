@@ -89,7 +89,7 @@
 //}
 
 - (UIImage *)imageWithTitle:(NSString *)title fontSize:(CGFloat)fontSize {
-    UIImage *img = [self GetImageWithColor:[UIColor whiteColor] andHeight:100];
+    UIImage *img = [self GetImageWithColor:[UIColor whiteColor] andHeight:200];
     //画布大小
     CGSize size=CGSizeMake(img.size.width,img.size.height);
     //创建一个基于位图的上下文

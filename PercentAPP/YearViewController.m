@@ -16,6 +16,7 @@
 #import <ShareSDKUI/SSUIEditorViewStyle.h>
 #import "UICountingLabel.h"
 #import "MozTopAlertView.h"
+#import <ShareSDKUI/SSUIShareActionSheetCustomItem.h>
 
 @interface YearViewController ()
 
@@ -31,6 +32,12 @@
 @end
 
 @implementation YearViewController
+
+- (IBAction)calendarButtonClick:(id)sender {
+    
+    
+    
+}
 
 - (IBAction)infoButtonClick:(id)sender {
     [MozTopAlertView showWithType:MozAlertTypeInfo
@@ -94,7 +101,7 @@
     if (imageArray) {
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"今年已经过去了\n%@",_percentStr]
-                                         images:[self imageWithTitle:_whichYearString fontSize:18]
+                                         images:[self imageWithTitle:_whichYearString fontSize:35]
                                             url:[NSURL URLWithString:@"https://liuchanghong.github.io/"]
                                           title:[NSString stringWithFormat:@"今年已经过去了\n%@",_percentStr]
                                            type:SSDKContentTypeAuto];
@@ -117,12 +124,54 @@
         //设置取消发布标签文本颜色
         [SSUIEditorViewStyle setCancelButtonLabelColor:[UIColor whiteColor]];
         [SSUIEditorViewStyle setShareButtonLabelColor:[UIColor whiteColor]];
+        //添加屏幕截图
+        SSUIShareActionSheetCustomItem *itemScreenShoot = [SSUIShareActionSheetCustomItem itemWithIcon:[UIImage imageNamed:@"shootScreen2.png"]
+                                                                                      label:@"截屏保存"
+                                                                                    onClick:^{
+                                                                                        //自定义item被点击的处理逻辑
+                                                                                        NSLog(@"=== 自定义item被点击 ===");
+                                                                                        UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0);
+                                                                                        CGContextRef ctx = UIGraphicsGetCurrentContext();
+                                                                                        // 将要保存的view绘制到上下文中
+                                                                                        [self.view.layer renderInContext:ctx];
+                                                                                        UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+                                                                                        UIGraphicsEndImageContext();
+                                                                                        // 将图片保存到相册
+                                                                                        UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+                                                                                    }];
+        //添加Copy
+        SSUIShareActionSheetCustomItem *itemCopy = [SSUIShareActionSheetCustomItem itemWithIcon:[UIImage imageNamed:@"copy.png"]
+                                                                                                 label:@"复制文字"
+                                                                                               onClick:^{
+//                                                                                                   自定义item被点击的处理逻辑
+                                                                                                   [[UIPasteboard generalPasteboard] setString:[NSString stringWithFormat:@"今年已经过去了\n%@",_percentStr]];
+                                                                                                   [MozTopAlertView showWithType:MozAlertTypeInfo
+                                                                                                                            text:@"复制成功"
+                                                                                                                      parentView:self.view];
+                                                                                                  
+                                                                                               }];
+        //添加CopyToIMG
+        SSUIShareActionSheetCustomItem *itemCopyToIMG = [SSUIShareActionSheetCustomItem itemWithIcon:[UIImage imageNamed:@"copyToImg.png"]
+                                                                                          label:@"文字转图片"
+                                                                                        onClick:^{
+                                                                                            //自定义item被点击的处理逻辑
+                                                                                            //                                                                                                   [[UIPasteboard generalPasteboard] setString:[NSString stringWithFormat:@"今年已经过去了\n%@",_percentStr]];
+                                                                                            //                                                                                                   [MozTopAlertView showWithType:MozAlertTypeInfo
+                                                                                            //                                                                                                                            text:@"复制成功"
+                                                                                            //                                                                                                                      parentView:self.view];
+                                                                                            UIImage *img = [self imageWithTitle:[NSString stringWithFormat:@"今年已经过去了\n%@",_percentStr] fontSize:10];
+                                                                                            UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+                                                                                        }];
         //调用分享的方法
         SSUIShareActionSheetController *sheet = [ShareSDK showShareActionSheet:nil
                                                                          items:@[
                                                                                  @(SSDKPlatformSubTypeWechatSession),
                                                                                  @(SSDKPlatformSubTypeWechatTimeline),
-                                                                                 @(SSDKPlatformTypeSinaWeibo)
+                                                                                 @(SSDKPlatformTypeSinaWeibo),
+                                                                                 @(SSDKPlatformTypeQQ),
+                                                                                 itemScreenShoot,
+                                                                                 itemCopy,
+                                                                                 itemCopyToIMG
                                                                                  ]
                                                                    shareParams:shareParams
                                                            onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
@@ -150,6 +199,21 @@
                                                                }
                                                            }];
         [sheet.directSharePlatforms addObject:@(SSDKPlatformTypeSinaWeibo)];
+    }
+}
+
+// 图片保存到相册掉用，固定写法
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    if (error) {
+        NSLog(@"保存失败");
+        [MozTopAlertView showWithType:MozAlertTypeInfo
+                                 text:@"保存失败"
+                           parentView:self.view];
+    }else{
+        NSLog(@"保存成功");
+        [MozTopAlertView showWithType:MozAlertTypeInfo
+                                 text:@"图片已保存至相册"
+                           parentView:self.view];
     }
 }
 
