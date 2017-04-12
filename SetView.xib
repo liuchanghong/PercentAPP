@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SetView">
+            <rect key="frame" x="0.0" y="0.0" width="601" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DZ-7P-w8q">
+                    <rect key="frame" x="0.0" y="0.0" width="601" height="300"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3V-TX-GNq">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择你的生日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ms-5J-jJE">
+                                    <rect key="frame" x="89" y="30" width="122" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="W6h-Pj-GSy"/>
+                                        <constraint firstAttribute="width" constant="122" id="wKy-ta-ZX9"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.93725490199999995" green="0.90588235289999997" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49B-CQ-ztt">
+                                    <rect key="frame" x="0.0" y="59" width="300" height="200"/>
+                                    <color key="tintColor" red="0.93725490199999995" green="0.90588235289999997" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="200" id="68o-ge-HNG"/>
+                                        <constraint firstAttribute="width" constant="300" id="mRU-Ej-fNV"/>
+                                    </constraints>
+                                    <date key="date" timeIntervalSinceReferenceDate="-347140799.42162323">
+                                        <!--1990-01-01 04:00:00 +0000-->
+                                    </date>
+                                    <locale key="locale" localeIdentifier="zh_CN"/>
+                                </datePicker>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lK-q1-wTD">
+                                    <rect key="frame" x="127" y="262" width="46" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="46" id="4fg-eO-MzC"/>
+                                        <constraint firstAttribute="height" constant="30" id="8yU-ez-t8D"/>
+                                    </constraints>
+                                    <state key="normal" title="下一页">
+                                        <color key="titleColor" red="0.93725490199999995" green="0.90588235289999997" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                </button>
+                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ava-TQ-sz0">
+                                    <rect key="frame" x="300" y="51" width="300" height="200"/>
+                                    <color key="backgroundColor" red="0.16096583549999999" green="0.16096583549999999" blue="0.16096583549999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" red="0.93725490199999995" green="0.90588235289999997" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="200" id="sXV-xP-zdx"/>
+                                        <constraint firstAttribute="width" constant="300" id="zPE-Ix-9Tb"/>
+                                    </constraints>
+                                </pickerView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你期望活到多少岁" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUZ-h2-cAT">
+                                    <rect key="frame" x="374" y="15" width="153" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="kNs-Ae-QV4"/>
+                                        <constraint firstAttribute="width" constant="153" id="vvC-2O-Vdo"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.93725490199999995" green="0.90588235289999997" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhl-Rn-xou">
+                                    <rect key="frame" x="374" y="254" width="46" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="bH8-LC-SJZ"/>
+                                        <constraint firstAttribute="width" constant="46" id="ogR-IY-DIt"/>
+                                    </constraints>
+                                    <state key="normal" title="上一页">
+                                        <color key="titleColor" red="0.93725490199999995" green="0.90588235289999997" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4m8-h8-cAD">
+                                    <rect key="frame" x="481" y="254" width="46" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="OkX-FS-t9A"/>
+                                        <constraint firstAttribute="width" constant="46" id="duy-ea-ODt"/>
+                                    </constraints>
+                                    <state key="normal" title="完成">
+                                        <color key="titleColor" red="0.93725490199999995" green="0.90588235289999997" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国人均寿命为 76.1 岁" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Org-3x-Tlt">
+                                    <rect key="frame" x="374" y="36" width="153" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="10"/>
+                                    <color key="textColor" red="0.93725490199999995" green="0.90588235289999997" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.16096583549999999" green="0.16096583549999999" blue="0.16096583549999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="Rhl-Rn-xou" firstAttribute="leading" secondItem="hUZ-h2-cAT" secondAttribute="leading" id="1X1-qq-Hui"/>
+                                <constraint firstItem="4m8-h8-cAD" firstAttribute="trailing" secondItem="hUZ-h2-cAT" secondAttribute="trailing" id="4QM-41-GGW"/>
+                                <constraint firstItem="0lK-q1-wTD" firstAttribute="centerX" secondItem="49B-CQ-ztt" secondAttribute="centerX" id="E1Z-YZ-iyO"/>
+                                <constraint firstItem="7ms-5J-jJE" firstAttribute="leading" secondItem="j3V-TX-GNq" secondAttribute="leading" constant="89" id="JeN-od-MUO"/>
+                                <constraint firstItem="Org-3x-Tlt" firstAttribute="top" secondItem="hUZ-h2-cAT" secondAttribute="bottom" id="KXY-ZM-J2d"/>
+                                <constraint firstItem="0lK-q1-wTD" firstAttribute="top" secondItem="49B-CQ-ztt" secondAttribute="bottom" constant="3" id="LH9-eX-0L9"/>
+                                <constraint firstItem="Rhl-Rn-xou" firstAttribute="top" secondItem="Ava-TQ-sz0" secondAttribute="bottom" constant="3" id="N3f-rK-Zy9"/>
+                                <constraint firstItem="49B-CQ-ztt" firstAttribute="centerX" secondItem="7ms-5J-jJE" secondAttribute="centerX" id="Px6-kU-EQ9"/>
+                                <constraint firstItem="Org-3x-Tlt" firstAttribute="width" secondItem="hUZ-h2-cAT" secondAttribute="width" id="Xct-3T-kKR"/>
+                                <constraint firstItem="4m8-h8-cAD" firstAttribute="top" secondItem="Ava-TQ-sz0" secondAttribute="bottom" constant="3" id="Z7r-GM-ue3"/>
+                                <constraint firstItem="Ava-TQ-sz0" firstAttribute="centerX" secondItem="hUZ-h2-cAT" secondAttribute="centerX" id="c37-iI-sqz"/>
+                                <constraint firstItem="Org-3x-Tlt" firstAttribute="height" secondItem="hUZ-h2-cAT" secondAttribute="height" id="hPS-LL-wN7"/>
+                                <constraint firstAttribute="trailing" secondItem="hUZ-h2-cAT" secondAttribute="trailing" constant="73" id="koR-oh-c42"/>
+                                <constraint firstItem="hUZ-h2-cAT" firstAttribute="top" secondItem="j3V-TX-GNq" secondAttribute="top" constant="15" id="mDY-rG-xLH"/>
+                                <constraint firstItem="7ms-5J-jJE" firstAttribute="top" secondItem="j3V-TX-GNq" secondAttribute="top" constant="30" id="nvZ-JN-mW5"/>
+                                <constraint firstItem="Org-3x-Tlt" firstAttribute="leading" secondItem="hUZ-h2-cAT" secondAttribute="leading" id="pDD-j3-hnR"/>
+                                <constraint firstItem="49B-CQ-ztt" firstAttribute="top" secondItem="7ms-5J-jJE" secondAttribute="bottom" constant="8" id="tFL-27-Gbi"/>
+                                <constraint firstAttribute="width" constant="600" id="th6-CJ-jbV"/>
+                                <constraint firstItem="Ava-TQ-sz0" firstAttribute="top" secondItem="hUZ-h2-cAT" secondAttribute="bottom" constant="15" id="ulY-Lh-xF8"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="j3V-TX-GNq" secondAttribute="trailing" id="1DZ-ez-iXK"/>
+                        <constraint firstItem="j3V-TX-GNq" firstAttribute="centerY" secondItem="2DZ-7P-w8q" secondAttribute="centerY" id="f2p-Zy-1Sl"/>
+                        <constraint firstItem="j3V-TX-GNq" firstAttribute="leading" secondItem="2DZ-7P-w8q" secondAttribute="leading" id="v6Y-Rk-wPg"/>
+                        <constraint firstItem="j3V-TX-GNq" firstAttribute="top" secondItem="2DZ-7P-w8q" secondAttribute="top" id="y6J-hT-ud9"/>
+                        <constraint firstAttribute="bottom" secondItem="j3V-TX-GNq" secondAttribute="bottom" id="yzx-Hg-mAr"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="0.16096583549999999" green="0.16096583549999999" blue="0.16096583549999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="2DZ-7P-w8q" secondAttribute="bottom" id="9a3-6p-wRp"/>
+                <constraint firstItem="2DZ-7P-w8q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Hnq-PE-Qza"/>
+                <constraint firstAttribute="trailing" secondItem="2DZ-7P-w8q" secondAttribute="trailing" id="IzV-E8-6VU"/>
+                <constraint firstItem="2DZ-7P-w8q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZQk-SB-WsP"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="agePicker" destination="Ava-TQ-sz0" id="uaI-Ya-vAd"/>
+                <outlet property="datePicker" destination="49B-CQ-ztt" id="4RS-rF-HIn"/>
+                <outlet property="nextPageButton" destination="0lK-q1-wTD" id="Cgu-55-jrf"/>
+                <outlet property="okButton" destination="4m8-h8-cAD" id="O9T-JB-Vxk"/>
+                <outlet property="previousButton" destination="Rhl-Rn-xou" id="bBq-UL-Ixj"/>
+                <outlet property="scrollView" destination="2DZ-7P-w8q" id="dXP-Hj-zHd"/>
+            </connections>
+            <point key="canvasLocation" x="-544.5" y="-191"/>
+        </view>
+    </objects>
+</document>

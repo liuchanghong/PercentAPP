@@ -19,80 +19,72 @@
 #import <ShareSDKUI/SSUIShareActionSheetCustomItem.h>
 
 @interface YearViewController ()
-
 @property (weak, nonatomic) IBOutlet STLoopProgressView *loopProgressView;
-@property (nonatomic)BOOL isLeapYear;//YES 为闰年，NO 为平年
+@property (nonatomic)BOOL isLeapYear; // YES 为闰年，NO 为平年
 @property (nonatomic,strong)NSArray *monthArray;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelToTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelToTop; // 顶部 label 距离 top 的约束
 @property (weak, nonatomic) IBOutlet UILabel *percentLabel;
 @property (nonatomic) CGFloat percentage;
 @property (nonatomic,strong) NSString *percentStr;
 @property (nonatomic,strong) NSString *whichYearString;
-
 @end
 
 @implementation YearViewController
 
-- (IBAction)calendarButtonClick:(id)sender {
-    
-    
-    
-}
-
+//左上角 infoButton 点击动作
 - (IBAction)infoButtonClick:(id)sender {
+    
     [MozTopAlertView showWithType:MozAlertTypeInfo
-                             text:@"要不要加我微信?"
-                           doText:@"复制到剪贴板"
+                             text:@"1. 向右滑一下试试\n2. 要不要加我微信?"
+                           doText:@"复制微信号"
                           doBlock:^{
                               [[UIPasteboard generalPasteboard] setString:@"homgeek"];
                               [MozTopAlertView showWithType:MozAlertTypeInfo
-                                                       text:@"复制成功，去粘贴吧"
+                                                       text:@"复制成功"
                                                  parentView:self.view];
                           }
                        parentView:self.view];
+    
 }
 
+//某些数据初始化
 -(void)dataInit{
     _isLeapYear = NO;
     _percentage = [self whichDayIsToday_percent];
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
+    //tabbar 字体颜色
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:38.0 / 255.0 green:130.0 / 255.0 blue:213.0 / 255.0 alpha:0.5]];
+    
+    //数据初始化
     [self dataInit];
+    
+    //顶部 label 距离 top 的约束值
     _labelToTop.constant = (SCREEN_HEIGHT/2 - 150) / 2 - 20;
+    
+    //loopPregressView 的 persentage 值设定
     self.loopProgressView.persentage = _percentage;
+    
+    //数字动画增加 label
     UICountingLabel *countingLabel = [[UICountingLabel alloc]initWithFrame:CGRectMake(0, 0, 200, 46)];
     countingLabel.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2-25);
     countingLabel.textAlignment = NSTextAlignmentCenter;
-    countingLabel.textColor = [UIColor whiteColor];
+    countingLabel.textColor = HexRGB(0xefe7d8);
     countingLabel.font = GHFont(30);
     [self.view addSubview:countingLabel];
     countingLabel.format = @"%.6f %%";
     [countingLabel countFrom:0.000000 to: _percentage*100 withDuration:2.0f];
-    if (_percentage <= 0.1) {
-        _percentStr = [NSString stringWithFormat:@"■□□□□□□□□□ %.1f%%",_percentage*100];
-    }else if (_percentage > 0.1 && _percentage <= 0.2){
-        _percentStr = [NSString stringWithFormat:@"■■□□□□□□□□ %.1f%%",_percentage*100];
-    }else if (_percentage > 0.2 && _percentage <= 0.3){
-        _percentStr = [NSString stringWithFormat:@"■■■□□□□□□□ %.1f%%",_percentage*100];
-    }else if (_percentage > 0.3 && _percentage <= 0.4){
-        _percentStr = [NSString stringWithFormat:@"■■■■□□□□□□ %.1f%%",_percentage*100];
-    }else if (_percentage > 0.4 && _percentage <= 0.5){
-        _percentStr = [NSString stringWithFormat:@"■■■■■□□□□□ %.1f%%",_percentage*100];
-    }else if (_percentage > 0.5 && _percentage <= 0.6){
-        _percentStr = [NSString stringWithFormat:@"■■■■■■□□□□ %.1f%%",_percentage*100];
-    }else if (_percentage > 0.6 && _percentage <= 0.7){
-        _percentStr = [NSString stringWithFormat:@"■■■■■■■□□□ %.1f%%",_percentage*100];
-    }else if (_percentage > 0.7 && _percentage <= 0.8){
-        _percentStr = [NSString stringWithFormat:@"■■■■■■■■□□ %.1f%%",_percentage*100];
-    }else if (_percentage > 0.8 && _percentage <= 0.9){
-        _percentStr = [NSString stringWithFormat:@"■■■■■■■■■□ %.1f%%",_percentage*100];
-    }else{
-        _percentStr = [NSString stringWithFormat:@"■■■■■■■■■■ %.1f%%",_percentage*100];
-    }
+    
+    //_percentStr 为分享时显示的 @"■□□□□□□□□□ %.1f%%" 内容
+    _percentStr = [self getPercentStrWithPercentage:_percentage];
+    
 }
+
+//分享按钮
 - (IBAction)shareButtonClick:(id)sender {
     
     //1、创建分享参数
@@ -108,23 +100,24 @@
         //有的平台要客户端分享需要加此方法，例如微博
         [shareParams SSDKEnableUseClientShare];
         // 设置分享菜单的背景颜色
-//        [SSUIShareActionSheetStyle setActionSheetBackgroundColor:[UIColor colorWithRed:249/255.0 green:0/255.0 blue:12/255.0 alpha:0.5]];//大背景
+        // [SSUIShareActionSheetStyle setActionSheetBackgroundColor:[UIColor colorWithRed:249/255.0 green:0/255.0 blue:12/255.0 alpha:0.5]];//大背景
         // 设置分享菜单颜色
         [SSUIShareActionSheetStyle setActionSheetColor:[UIColor colorWithRed:21.0/255.0 green:21.0/255.0 blue:21.0/255.0 alpha:1.0]];
         // 设置分享菜单－取消按钮背景颜色
         [SSUIShareActionSheetStyle setCancelButtonBackgroundColor:[UIColor colorWithRed:21.0/255.0 green:21.0/255.0 blue:21.0/255.0 alpha:1.0]];
         // 设置分享菜单－取消按钮的文本颜色
-        [SSUIShareActionSheetStyle setCancelButtonLabelColor:[UIColor whiteColor]];
+        [SSUIShareActionSheetStyle setCancelButtonLabelColor:HexRGB(0xefe7d8)];
         // 设置分享菜单－社交平台文本颜色
-        [SSUIShareActionSheetStyle setItemNameColor:[UIColor whiteColor]];
+        [SSUIShareActionSheetStyle setItemNameColor:HexRGB(0xefe7d8)];
         //设置分享编辑界面的导航栏颜色
         [SSUIEditorViewStyle setiPhoneNavigationBarBackgroundColor:[UIColor blackColor]];
         //设置编辑界面标题颜色
-        [SSUIEditorViewStyle setTitleColor:[UIColor whiteColor]];
+        [SSUIEditorViewStyle setTitleColor:HexRGB(0xefe7d8)];
         //设置取消发布标签文本颜色
-        [SSUIEditorViewStyle setCancelButtonLabelColor:[UIColor whiteColor]];
-        [SSUIEditorViewStyle setShareButtonLabelColor:[UIColor whiteColor]];
-        //添加屏幕截图
+        [SSUIEditorViewStyle setCancelButtonLabelColor:HexRGB(0xefe7d8)];
+        [SSUIEditorViewStyle setShareButtonLabelColor:HexRGB(0xefe7d8)];
+        
+        //分享中添加屏幕截图功能
         SSUIShareActionSheetCustomItem *itemScreenShoot = [SSUIShareActionSheetCustomItem itemWithIcon:[UIImage imageNamed:@"shootScreen2.png"]
                                                                                       label:@"截屏保存"
                                                                                     onClick:^{
@@ -132,36 +125,34 @@
                                                                                         NSLog(@"=== 自定义item被点击 ===");
                                                                                         UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0);
                                                                                         CGContextRef ctx = UIGraphicsGetCurrentContext();
-                                                                                        // 将要保存的view绘制到上下文中
+                                                                                        //将要保存的view绘制到上下文中
                                                                                         [self.view.layer renderInContext:ctx];
                                                                                         UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
                                                                                         UIGraphicsEndImageContext();
-                                                                                        // 将图片保存到相册
+                                                                                        //将图片保存到相册
                                                                                         UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
                                                                                     }];
-        //添加Copy
+        
+        //分享中添加 Copy 文字功能
         SSUIShareActionSheetCustomItem *itemCopy = [SSUIShareActionSheetCustomItem itemWithIcon:[UIImage imageNamed:@"copy.png"]
                                                                                                  label:@"复制文字"
                                                                                                onClick:^{
-//                                                                                                   自定义item被点击的处理逻辑
+                                                                                                   //自定义item被点击的处理逻辑
                                                                                                    [[UIPasteboard generalPasteboard] setString:[NSString stringWithFormat:@"今年已经过去了\n%@",_percentStr]];
                                                                                                    [MozTopAlertView showWithType:MozAlertTypeInfo
                                                                                                                             text:@"复制成功"
                                                                                                                       parentView:self.view];
                                                                                                   
                                                                                                }];
-        //添加CopyToIMG
+        //分享中添加 CopyToIMG 文字转图片功能
         SSUIShareActionSheetCustomItem *itemCopyToIMG = [SSUIShareActionSheetCustomItem itemWithIcon:[UIImage imageNamed:@"copyToImg.png"]
                                                                                           label:@"文字转图片"
                                                                                         onClick:^{
                                                                                             //自定义item被点击的处理逻辑
-                                                                                            //                                                                                                   [[UIPasteboard generalPasteboard] setString:[NSString stringWithFormat:@"今年已经过去了\n%@",_percentStr]];
-                                                                                            //                                                                                                   [MozTopAlertView showWithType:MozAlertTypeInfo
-                                                                                            //                                                                                                                            text:@"复制成功"
-                                                                                            //                                                                                                                      parentView:self.view];
                                                                                             UIImage *img = [self imageWithTitle:[NSString stringWithFormat:@"今年已经过去了\n%@",_percentStr] fontSize:10];
                                                                                             UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
                                                                                         }];
+        
         //调用分享的方法
         SSUIShareActionSheetController *sheet = [ShareSDK showShareActionSheet:nil
                                                                          items:@[
@@ -202,20 +193,7 @@
     }
 }
 
-// 图片保存到相册掉用，固定写法
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    if (error) {
-        NSLog(@"保存失败");
-        [MozTopAlertView showWithType:MozAlertTypeInfo
-                                 text:@"保存失败"
-                           parentView:self.view];
-    }else{
-        NSLog(@"保存成功");
-        [MozTopAlertView showWithType:MozAlertTypeInfo
-                                 text:@"图片已保存至相册"
-                           parentView:self.view];
-    }
-}
+
 
 //获取系统年月日时分秒
 - (NSArray *)getSystemTime {
@@ -246,38 +224,69 @@
 
 //计算今日是今年的第几天
 - (float)whichDayIsToday_percent{
+    
     NSArray *timeArray = [self getSystemTime];
+    
     NSString *yearStr = timeArray[0];
+    
     _whichYearString = [NSString stringWithFormat:@"%@ 年",yearStr];
+    
     int yearInt = yearStr.intValue;
+    
     NSString *monthStr = timeArray[1];
+    
     int monthInt = monthStr.intValue;
+    
     NSString *dayStr = timeArray[2];
+    
     int dayInt = dayStr.intValue;
+    
     _isLeapYear = [self isLeapYearOrNot:yearInt];
+    
     int whichDay = 0;
+    
     if (_isLeapYear) {
+        
         _monthArray = @[@"31",@"29",@"31",@"30",@"31",@"30",@"31",@"31",@"30",@"31",@"30",@"31"];
+        
         for (int i = 0; i < monthInt-1; i++) {
+            
             NSString *str = _monthArray[i];
+            
             whichDay = whichDay + str.intValue;
+            
         }
+        
         whichDay = whichDay + dayInt;
+        
         return whichDay/366.0;
+        
     }else{
+        
         _monthArray = @[@"31",@"28",@"31",@"30",@"31",@"30",@"31",@"31",@"30",@"31",@"30",@"31"];
+        
         for (int i = 0; i < monthInt-1; i++) {
+            
             NSString *str = _monthArray[i];
+            
             whichDay = whichDay + str.intValue;
+            
         }
+        
         whichDay = whichDay + dayInt;
+        
         NSLog(@"%f",whichDay/365.0);
+        
         return whichDay/365.0;
+        
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
+    
 }
 
 /*

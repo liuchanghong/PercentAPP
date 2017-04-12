@@ -11,6 +11,11 @@
 //微信SDK头文件
 #import "WXApi.h"
 #import "WeiboSDK.h"
+#import "MyLeftView.h"
+#import "UIView+leoAdd.h"
+#import "PSDrawerManager.h"
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 
 @interface AppDelegate ()
 
@@ -20,6 +25,25 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    //初始化 leftView
+    MyLeftView *leftView = [[NSBundle mainBundle] loadNibNamed:@"MyLeftView" owner:nil options:nil][0];
+    
+    //设置 leftView 的 frame
+    leftView.frame = CGRectMake(-self.window.width * (1 - kLeftWidthScale), 0, self.window.width, self.window.height);
+    
+    //获取 mainStoryboard
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    //获取 sb 中的 MyTabbarController
+    UITabBarController *tabBarVC = [sb instantiateViewControllerWithIdentifier:@"MyTabbarController"];
+    
+    //PSDrawerManager 单例，install 主视图和左视图
+    [[PSDrawerManager instance] installCenterViewController:tabBarVC leftView:leftView];
+    
     /**
      *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册
      *  在将生成的AppKey传入到此方法中。
@@ -27,6 +51,7 @@
      *  在此事件中写入连接代码。第四个参数则为配置本地社交平台时触发，根据返回的平台类型来配置平台信息。
      *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
      */
+    
     [ShareSDK registerApp:@"1b857e0e7994d"
      
           activePlatforms:@[
@@ -36,48 +61,87 @@
                             @(SSDKPlatformTypeQQ),
                             @(SSDKPlatformTypeMail),
                             @(SSDKPlatformTypeSMS),
-                            @(SSDKPlatformTypeCopy)]
+                            @(SSDKPlatformTypeCopy)
+                            ]
+     
                  onImport:^(SSDKPlatformType platformType)
-     {
-         switch (platformType)
-         {
-             case SSDKPlatformTypeWechat:
-                 [ShareSDKConnector connectWeChat:[WXApi class]];
-                 break;
-             case SSDKPlatformTypeSinaWeibo:
-                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
-                 break;
-             default:
-                 break;
-         }
-     }
-          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
+     
      {
          
          switch (platformType)
+         
          {
+                 
+             case SSDKPlatformTypeWechat:
+                 
+                 [ShareSDKConnector connectWeChat:[WXApi class]];
+                 
+                 break;
+                 
+             case SSDKPlatformTypeSinaWeibo:
+                 
+                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+                 
+                 break;
+                 
+             case SSDKPlatformTypeQQ:
+                 
+                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                 
+                 break;
+                 
+             default:
+                 
+                 break;
+                 
+         }
+         
+     }
+     
+          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
+     
+     {
+         
+         switch (platformType)
+         
+         {
+                 
             case SSDKPlatformTypeWechat:
+                 
                  [appInfo SSDKSetupWeChatByAppId:@"wxd3750c0ff3ec574d"
                                        appSecret:@"7235a6c2a5b46b8846272f313b43ac3d"];
+                 
                  break;
+                 
              case SSDKPlatformTypeSinaWeibo:
+                 
                  //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                 
                  [appInfo SSDKSetupSinaWeiboByAppKey:@"1793527049"
                                            appSecret:@"82a315c6c25f698291b8a62e2914bc42"
                                          redirectUri:@"https://liuchanghong.github.io"
                                             authType:SSDKAuthTypeBoth];
+                 
                  break;
+                 
              case SSDKPlatformTypeQQ:
+                 
                  [appInfo SSDKSetupQQByAppId:@"1106008938"
                                       appKey:@"aRbSvpJhXq2EjrQY"
                                     authType:SSDKAuthTypeBoth];
+                 
                  break;
+                 
             default:
+                 
                  break;
+                 
          }
+         
      }];
     
     return YES;
+    
 }
 
 

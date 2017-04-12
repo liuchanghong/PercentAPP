@@ -27,4 +27,7 @@
 //毛玻璃
 +(UIImage *)coreBlurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
 - (UIImage *)imageWithTitle:(NSString *)title fontSize:(CGFloat)fontSize;
+
+- (NSString *)getPercentStrWithPercentage : (CGFloat)percentage;
+- (NSString *)getBottomLabelWithPercentage : (CGFloat)percentage;
 @end

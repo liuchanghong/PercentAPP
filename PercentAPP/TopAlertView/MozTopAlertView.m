@@ -9,6 +9,7 @@
 #import "MozTopAlertView.h"
 #import "UIFont+FontAwesome.h"
 #import "NSString+FontAwesome.h"
+#import "BaseViewController.h"
 
 #define MOZ_TEXTSIZE(text, font) [text length] > 0 ? [text \
 sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
@@ -118,17 +119,17 @@ sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
     _autoHide = YES;
     _duration = 3;
     CGFloat width = [UIScreen mainScreen].bounds.size.width*0.8;
-    [self setFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - width)*0.5, -40, width, 40)];
+    [self setFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - width)*0.5, -40, width, 80)];
     
     leftIcon = [[UILabel alloc]initWithFrame:CGRectMake(6, 0, CGRectGetHeight(self.frame), CGRectGetHeight(self.frame))];
     leftIcon.backgroundColor = [UIColor clearColor];
-    [leftIcon setTextColor:[UIColor whiteColor]];
+    [leftIcon setTextColor:HexRGB(0xefe7d8)];
     leftIcon.textAlignment = NSTextAlignmentCenter;
     leftIcon.font = [UIFont fontAwesomeFontOfSize:30];
     [self addSubview:leftIcon];
     
     UIView *leftLine = [[UIView alloc]initWithFrame:CGRectMake(3, 0, 3, CGRectGetHeight(self.frame))];
-//    leftLine.backgroundColor = [UIColor whiteColor];
+//    leftLine.backgroundColor = HexRGB(0xefe7d8);
     [self addSubview:leftLine];
     
     self.layer.masksToBounds = YES;
@@ -164,10 +165,16 @@ sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
     CGFloat textLabelWidth = width*0.68;
     UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake((width - textLabelWidth)*0.5, 0, textLabelWidth, CGRectGetHeight(self.frame))];
     textLabel.backgroundColor = [UIColor clearColor];
-    [textLabel setTextColor:[UIColor whiteColor]];
-    textLabel.textAlignment = NSTextAlignmentCenter;
-    textLabel.font = [UIFont systemFontOfSize:16];
+    [textLabel setTextColor:HexRGB(0xefe7d8)];
     textLabel.text = text;
+    textLabel.textAlignment = NSTextAlignmentCenter;
+    NSLog(@"%@",textLabel.text);
+    if ([textLabel.text isEqualToString:@"1. 向右滑一下试试\n2. 要不要加我微信?"]) {
+        textLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    textLabel.font = [UIFont systemFontOfSize:16];
+    
+    textLabel.numberOfLines = 0;
     [self addSubview:textLabel];
     
     if (doText) {
@@ -179,11 +186,11 @@ sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
         NSMutableAttributedString *content = [[NSMutableAttributedString alloc]initWithString:doText];
         NSRange contentRange = {0,[content length]};
         [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
-        [content addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:contentRange];
+        [content addAttribute:NSForegroundColorAttributeName value:HexRGB(0xefe7d8) range:contentRange];
         [rightBtn setAttributedTitle:content forState:UIControlStateNormal];
         
         [rightBtn setBackgroundImage:[self createImageWithColor:self.backgroundColor] forState:UIControlStateNormal];
-        [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [rightBtn setTitleColor:HexRGB(0xefe7d8) forState:UIControlStateNormal];
         
         CGSize size = MOZ_TEXTSIZE(doText, rightBtn.titleLabel.font);
         
@@ -195,7 +202,7 @@ sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
         [rightBtn addTarget:self action:@selector(rightBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:rightBtn];
         UIView *rightLine = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame) - rightBtnWidth - 3, 0, 3, CGRectGetHeight(self.frame))];
-//        rightLine.backgroundColor = [UIColor whiteColor];
+//        rightLine.backgroundColor = HexRGB(0xefe7d8);
         [self addSubview:rightLine];
     }
     

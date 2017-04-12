@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "MozTopAlertView.h"
 @interface BaseViewController ()<UIGestureRecognizerDelegate>
 @end
 
@@ -118,34 +119,81 @@
     return newImage;
 }
 
-//-(void)makeCehua{
-//    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
-//    
-//    // handleNavigationTransition:为系统私有API,即系统自带侧滑手势的回调方法，我们在自己的手势上直接用它的回调方法
-//    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:target action:@selector(handleNavigationTransition:)];
-//    panGesture.delegate = self; // 设置手势代理，拦截手势触发
-//    [self.view addGestureRecognizer:panGesture];
-//    
-//    // 一定要禁止系统自带的滑动手势
-//    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-//}
-//
-//// 什么时候调用，每次触发手势之前都会询问下代理方法，是否触发
-//// 作用：拦截手势触发
-//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-//{
-//    // 当当前控制器是根控制器时，不可以侧滑返回，所以不能使其触发手势
-//    if(self.navigationController.childViewControllers.count == 1)
-//    {
-//        return NO;
-//    }
-//    
-//    if ([self.navigationController.viewControllers[0] isKindOfClass:[BaiduMapViewController class]]) {
-//        return NO;
-//    }
-//    
-//    return YES;
-//}
+// 图片保存到相册掉用，固定写法
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    if (error) {
+        NSLog(@"保存失败");
+        [MozTopAlertView showWithType:MozAlertTypeInfo
+                                 text:@"保存失败"
+                           parentView:self.view];
+    }else{
+        NSLog(@"保存成功");
+        [MozTopAlertView showWithType:MozAlertTypeInfo
+                                 text:@"图片已保存至相册"
+                           parentView:self.view];
+    }
+}
+
+// percentage 与 percentStr 的关系
+- (NSString *)getPercentStrWithPercentage : (CGFloat)percentage {
+    
+    NSString *percentStr;
+    
+    if (percentage <= 0.1) {
+        percentStr = [NSString stringWithFormat:@"■□□□□□□□□□ %.1f%%",percentage*100];
+    }else if (percentage > 0.1 && percentage <= 0.2){
+        percentStr = [NSString stringWithFormat:@"■■□□□□□□□□ %.1f%%",percentage*100];
+    }else if (percentage > 0.2 && percentage <= 0.3){
+        percentStr = [NSString stringWithFormat:@"■■■□□□□□□□ %.1f%%",percentage*100];
+    }else if (percentage > 0.3 && percentage <= 0.4){
+        percentStr = [NSString stringWithFormat:@"■■■■□□□□□□ %.1f%%",percentage*100];
+    }else if (percentage > 0.4 && percentage <= 0.5){
+        percentStr = [NSString stringWithFormat:@"■■■■■□□□□□ %.1f%%",percentage*100];
+    }else if (percentage > 0.5 && percentage <= 0.6){
+        percentStr = [NSString stringWithFormat:@"■■■■■■□□□□ %.1f%%",percentage*100];
+    }else if (percentage > 0.6 && percentage <= 0.7){
+        percentStr = [NSString stringWithFormat:@"■■■■■■■□□□ %.1f%%",percentage*100];
+    }else if (percentage > 0.7 && percentage <= 0.8){
+        percentStr = [NSString stringWithFormat:@"■■■■■■■■□□ %.1f%%",percentage*100];
+    }else if (percentage > 0.8 && percentage <= 0.9){
+        percentStr = [NSString stringWithFormat:@"■■■■■■■■■□ %.1f%%",percentage*100];
+    }else{
+        percentStr = [NSString stringWithFormat:@"■■■■■■■■■■ %.1f%%",percentage*100];
+    }
+    
+    return percentStr;
+    
+}
+
+- (NSString *)getBottomLabelWithPercentage : (CGFloat)percentage {
+    
+    NSString *bottomLabelText;
+    
+    if (percentage <= 0.1) {
+        bottomLabelText = @"(¦3[▓▓]\n请抓紧，钻被窝睡觉吧";
+    }else if (percentage > 0.1 && percentage <= 0.2){
+        bottomLabelText = @"(¦3[▓▓]\n请抓紧，钻被窝睡觉吧，再不睡就该起床了";
+    }else if (percentage > 0.2 && percentage <= 0.3){
+        bottomLabelText = @"..._〆(°▽°*)\n请抓紧，准备准备起床吧";
+    }else if (percentage > 0.3 && percentage <= 0.4){
+        bottomLabelText = @"٩(｡・ω・｡)﻿و\n请抓紧，决定一下今天都要干什么吧";
+    }else if (percentage > 0.4 && percentage <= 0.5){
+        bottomLabelText = @"┬─┬ ノ( ' - 'ノ)\n请抓紧，想想午饭吃什么吧";
+    }else if (percentage > 0.5 && percentage <= 0.6){
+        bottomLabelText = @"(∩^o^)⊃━☆ﾟ.*･｡\n请不要总想着晚上去哪儿玩的事";
+    }else if (percentage > 0.6 && percentage <= 0.7){
+        bottomLabelText = @"(∩^o^)⊃━☆ﾟ.*･｡\n请不要总想着晚上去哪儿玩的事";
+    }else if (percentage > 0.7 && percentage <= 0.8){
+        bottomLabelText = @"｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡\n请抓紧，该吃吃该喝喝该锻炼就去锻炼吧";
+    }else if (percentage > 0.8 && percentage <= 0.9){
+        bottomLabelText = @"（⺻▽⺻ ）\n请抓紧，洗澡上床读书吧\n长得好看就少读会儿，长得丑就多读会儿";
+    }else{
+        bottomLabelText = @"(¦3[▓▓]\n请抓紧，钻被窝睡觉吧";
+    }
+    
+    return bottomLabelText;
+    
+}
 
 /*
 #pragma mark - Navigation

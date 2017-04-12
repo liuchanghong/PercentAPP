@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00D517ACD6993BF6A0CF23C7 /* libPods-PercentAPP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D539546A4E81912D891BA67 /* libPods-PercentAPP.a */; };
 		A90B6AC21E607C3900F2057E /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B6ABA1E607C3900F2057E /* FAImageView.m */; };
 		A90B6AC31E607C3900F2057E /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A90B6ABB1E607C3900F2057E /* FontAwesome.ttf */; };
 		A90B6AC41E607C3900F2057E /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B6ABD1E607C3900F2057E /* NSString+FontAwesome.m */; };
@@ -35,6 +36,12 @@
 		A90B6B1D1E6162A300F2057E /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A90B6B071E6162A300F2057E /* ShareSDK.bundle */; };
 		A90B6B1E1E6162A300F2057E /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A90B6B081E6162A300F2057E /* ShareSDKConnector.framework */; };
 		A90BEB1D1E6024CE00B17E58 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A90BEB1C1E6024CE00B17E58 /* ImageIO.framework */; };
+		A916E4581E691B3C00DDBB5E /* MyLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = A916E4571E691B3C00DDBB5E /* MyLeftView.m */; };
+		A916E45A1E691B4600DDBB5E /* MyLeftView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A916E4591E691B4600DDBB5E /* MyLeftView.xib */; };
+		A916E4621E6966D300DDBB5E /* LifeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A916E4611E6966D300DDBB5E /* LifeView.m */; };
+		A916E4641E6966EC00DDBB5E /* LifeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A916E4631E6966EC00DDBB5E /* LifeView.xib */; };
+		A916E4671E6FB5CE00DDBB5E /* SetView.m in Sources */ = {isa = PBXBuildFile; fileRef = A916E4661E6FB5CE00DDBB5E /* SetView.m */; };
+		A916E4691E6FB5DA00DDBB5E /* SetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A916E4681E6FB5DA00DDBB5E /* SetView.xib */; };
 		A9D7502E1E5C804E00A9662F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D7502D1E5C804E00A9662F /* main.m */; };
 		A9D750311E5C804E00A9662F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D750301E5C804E00A9662F /* AppDelegate.m */; };
 		A9D750371E5C804E00A9662F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9D750351E5C804E00A9662F /* Main.storyboard */; };
@@ -42,6 +49,10 @@
 		A9D7503C1E5C804E00A9662F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9D7503A1E5C804E00A9662F /* LaunchScreen.storyboard */; };
 		A9D750471E5C804E00A9662F /* PercentAPPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D750461E5C804E00A9662F /* PercentAPPTests.m */; };
 		A9D750521E5C804E00A9662F /* PercentAPPUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D750511E5C804E00A9662F /* PercentAPPUITests.m */; };
+		A9D8967F1E670B1400A8C42B /* LeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D896761E670B1400A8C42B /* LeftView.m */; };
+		A9D896801E670B1400A8C42B /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D896791E670B1400A8C42B /* LeftViewController.m */; };
+		A9D896811E670B1400A8C42B /* PSDrawerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D8967C1E670B1400A8C42B /* PSDrawerManager.m */; };
+		A9D896821E670B1400A8C42B /* UIView+leoAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D8967E1E670B1400A8C42B /* UIView+leoAdd.m */; };
 		A9E9C9811E5D1A4C002F46BA /* YearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E9C9801E5D1A4C002F46BA /* YearViewController.m */; };
 		A9E9C98F1E5D23C0002F46BA /* STLoopProgressView+BaseConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E9C98C1E5D23C0002F46BA /* STLoopProgressView+BaseConfiguration.m */; };
 		A9E9C9901E5D23C0002F46BA /* STLoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E9C98E1E5D23C0002F46BA /* STLoopProgressView.m */; };
@@ -54,7 +65,6 @@
 		A9E9C9CA1E5D97AD002F46BA /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E9C9C91E5D97AD002F46BA /* UICountingLabel.m */; };
 		A9E9C9CD1E5E6C13002F46BA /* MonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E9C9CC1E5E6C13002F46BA /* MonthViewController.m */; };
 		A9E9C9D11E5E7BF9002F46BA /* DayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E9C9D01E5E7BF9002F46BA /* DayViewController.m */; };
-		E827E5BC24DC2A1594A05553 /* Pods_PercentAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E5B372AE999EF43535BA97 /* Pods_PercentAPP.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +85,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		21E5B372AE999EF43535BA97 /* Pods_PercentAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PercentAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E3C30FA81170A76D236A21 /* Pods-PercentAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PercentAPP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PercentAPP/Pods-PercentAPP.debug.xcconfig"; sourceTree = "<group>"; };
+		6D539546A4E81912D891BA67 /* libPods-PercentAPP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PercentAPP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BEC15631B6CB5F2A3A92E9 /* Pods-PercentAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PercentAPP.release.xcconfig"; path = "Pods/Target Support Files/Pods-PercentAPP/Pods-PercentAPP.release.xcconfig"; sourceTree = "<group>"; };
 		A90B6AAE1E60778B00F2057E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A90B6AB31E6078D900F2057E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -127,6 +137,15 @@
 		A90B6B071E6162A300F2057E /* ShareSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDK.bundle; sourceTree = "<group>"; };
 		A90B6B081E6162A300F2057E /* ShareSDKConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConnector.framework; sourceTree = "<group>"; };
 		A90BEB1C1E6024CE00B17E58 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		A916E4561E691B3C00DDBB5E /* MyLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLeftView.h; sourceTree = "<group>"; };
+		A916E4571E691B3C00DDBB5E /* MyLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLeftView.m; sourceTree = "<group>"; };
+		A916E4591E691B4600DDBB5E /* MyLeftView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLeftView.xib; sourceTree = "<group>"; };
+		A916E4601E6966D300DDBB5E /* LifeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LifeView.h; path = PSDraweManager/LifeView.h; sourceTree = "<group>"; };
+		A916E4611E6966D300DDBB5E /* LifeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LifeView.m; path = PSDraweManager/LifeView.m; sourceTree = "<group>"; };
+		A916E4631E6966EC00DDBB5E /* LifeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LifeView.xib; sourceTree = "<group>"; };
+		A916E4651E6FB5CE00DDBB5E /* SetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetView.h; sourceTree = "<group>"; };
+		A916E4661E6FB5CE00DDBB5E /* SetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetView.m; sourceTree = "<group>"; };
+		A916E4681E6FB5DA00DDBB5E /* SetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SetView.xib; path = ../SetView.xib; sourceTree = "<group>"; };
 		A9D750291E5C804E00A9662F /* PercentAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PercentAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D7502D1E5C804E00A9662F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A9D7502F1E5C804E00A9662F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -141,6 +160,15 @@
 		A9D7504D1E5C804E00A9662F /* PercentAPPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PercentAPPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D750511E5C804E00A9662F /* PercentAPPUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PercentAPPUITests.m; sourceTree = "<group>"; };
 		A9D750531E5C804E00A9662F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9D896751E670B1400A8C42B /* LeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftView.h; sourceTree = "<group>"; };
+		A9D896761E670B1400A8C42B /* LeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftView.m; sourceTree = "<group>"; };
+		A9D896781E670B1400A8C42B /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		A9D896791E670B1400A8C42B /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
+		A9D8967B1E670B1400A8C42B /* PSDrawerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSDrawerManager.h; sourceTree = "<group>"; };
+		A9D8967C1E670B1400A8C42B /* PSDrawerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSDrawerManager.m; sourceTree = "<group>"; };
+		A9D8967D1E670B1400A8C42B /* UIView+leoAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+leoAdd.h"; sourceTree = "<group>"; };
+		A9D8967E1E670B1400A8C42B /* UIView+leoAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+leoAdd.m"; sourceTree = "<group>"; };
+		A9E3A31F1E66BAD3003AFB1C /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/PercentAPP-bagsucfkjjxezdcxxcbeaxoanndu/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		A9E9C97F1E5D1A4C002F46BA /* YearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearViewController.h; sourceTree = "<group>"; };
 		A9E9C9801E5D1A4C002F46BA /* YearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearViewController.m; sourceTree = "<group>"; };
 		A9E9C98B1E5D23C0002F46BA /* STLoopProgressView+BaseConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STLoopProgressView+BaseConfiguration.h"; sourceTree = "<group>"; };
@@ -169,6 +197,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9E9C9C21E5D7837002F46BA /* JavaScriptCore.framework in Frameworks */,
+				A9E9C9C01E5D782F002F46BA /* libstdc++.tbd in Frameworks */,
+				A9E9C9BC1E5D7819002F46BA /* libz.tbd in Frameworks */,
+				A9E9C9BE1E5D7827002F46BA /* libicucore.tbd in Frameworks */,
 				A90B6B131E6162A300F2057E /* SMSConnector.framework in Frameworks */,
 				A90B6B151E6162A300F2057E /* TencentOpenAPI.framework in Frameworks */,
 				A90B6B141E6162A300F2057E /* WechatConnector.framework in Frameworks */,
@@ -180,17 +212,13 @@
 				A90BEB1D1E6024CE00B17E58 /* ImageIO.framework in Frameworks */,
 				A90B6B121E6162A300F2057E /* SinaWeiboConnector.framework in Frameworks */,
 				A90B6B111E6162A300F2057E /* QQConnector.framework in Frameworks */,
-				A9E9C9C21E5D7837002F46BA /* JavaScriptCore.framework in Frameworks */,
 				A90B6B171E6162A300F2057E /* libWeiboSDK.a in Frameworks */,
 				A90B6B091E6162A300F2057E /* ShareSDK.framework in Frameworks */,
-				A9E9C9C01E5D782F002F46BA /* libstdc++.tbd in Frameworks */,
-				A9E9C9BE1E5D7827002F46BA /* libicucore.tbd in Frameworks */,
 				A90B6B191E6162A300F2057E /* libWeChatSDK.a in Frameworks */,
 				A90B6B0C1E6162A300F2057E /* ShareSDKExtension.framework in Frameworks */,
 				A90B6B101E6162A300F2057E /* MailConnector.framework in Frameworks */,
 				A90B6B0F1E6162A300F2057E /* CopyConnector.framework in Frameworks */,
-				A9E9C9BC1E5D7819002F46BA /* libz.tbd in Frameworks */,
-				E827E5BC24DC2A1594A05553 /* Pods_PercentAPP.framework in Frameworks */,
+				00D517ACD6993BF6A0CF23C7 /* libPods-PercentAPP.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,12 +404,13 @@
 		A9D7502B1E5C804E00A9662F /* PercentAPP */ = {
 			isa = PBXGroup;
 			children = (
+				A9D896721E670B1400A8C42B /* PSDraweManager */,
 				A90B6ADC1E6162A300F2057E /* ShareSDK */,
 				A90B6AB71E607C3900F2057E /* TopAlertView */,
+				A9E9C98A1E5D23C0002F46BA /* STLoopProgressView */,
 				A9E9C9C71E5D97AD002F46BA /* UICountingLabel */,
 				A9E9C9911E5D27CD002F46BA /* BaseViewController.h */,
 				A9E9C9921E5D27CD002F46BA /* BaseViewController.m */,
-				A9E9C98A1E5D23C0002F46BA /* STLoopProgressView */,
 				A9D7502F1E5C804E00A9662F /* AppDelegate.h */,
 				A9D750301E5C804E00A9662F /* AppDelegate.m */,
 				A9E9C97F1E5D1A4C002F46BA /* YearViewController.h */,
@@ -395,6 +424,15 @@
 				A9D7503A1E5C804E00A9662F /* LaunchScreen.storyboard */,
 				A9D7503D1E5C804E00A9662F /* Info.plist */,
 				A9D7502C1E5C804E00A9662F /* Supporting Files */,
+				A916E4561E691B3C00DDBB5E /* MyLeftView.h */,
+				A916E4571E691B3C00DDBB5E /* MyLeftView.m */,
+				A916E4591E691B4600DDBB5E /* MyLeftView.xib */,
+				A916E4601E6966D300DDBB5E /* LifeView.h */,
+				A916E4611E6966D300DDBB5E /* LifeView.m */,
+				A916E4631E6966EC00DDBB5E /* LifeView.xib */,
+				A916E4651E6FB5CE00DDBB5E /* SetView.h */,
+				A916E4661E6FB5CE00DDBB5E /* SetView.m */,
+				A916E4681E6FB5DA00DDBB5E /* SetView.xib */,
 			);
 			path = PercentAPP;
 			sourceTree = "<group>";
@@ -425,6 +463,53 @@
 			path = PercentAPPUITests;
 			sourceTree = "<group>";
 		};
+		A9D896721E670B1400A8C42B /* PSDraweManager */ = {
+			isa = PBXGroup;
+			children = (
+				A9D896731E670B1400A8C42B /* Left */,
+				A9D8967A1E670B1400A8C42B /* lib */,
+			);
+			path = PSDraweManager;
+			sourceTree = "<group>";
+		};
+		A9D896731E670B1400A8C42B /* Left */ = {
+			isa = PBXGroup;
+			children = (
+				A9D896741E670B1400A8C42B /* View */,
+				A9D896771E670B1400A8C42B /* ViewController */,
+			);
+			path = Left;
+			sourceTree = "<group>";
+		};
+		A9D896741E670B1400A8C42B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A9D896751E670B1400A8C42B /* LeftView.h */,
+				A9D896761E670B1400A8C42B /* LeftView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9D896771E670B1400A8C42B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A9D896781E670B1400A8C42B /* LeftViewController.h */,
+				A9D896791E670B1400A8C42B /* LeftViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A9D8967A1E670B1400A8C42B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				A9D8967B1E670B1400A8C42B /* PSDrawerManager.h */,
+				A9D8967C1E670B1400A8C42B /* PSDrawerManager.m */,
+				A9D8967D1E670B1400A8C42B /* UIView+leoAdd.h */,
+				A9D8967E1E670B1400A8C42B /* UIView+leoAdd.m */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		A9E9C98A1E5D23C0002F46BA /* STLoopProgressView */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +524,7 @@
 		A9E9C9BA1E5D7819002F46BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A9E3A31F1E66BAD3003AFB1C /* libAFNetworking.a */,
 				A90B6AB51E6078E800F2057E /* Foundation.framework */,
 				A90B6AB31E6078D900F2057E /* CoreGraphics.framework */,
 				A90B6AAE1E60778B00F2057E /* UIKit.framework */,
@@ -448,7 +534,7 @@
 				A9E9C9BF1E5D782F002F46BA /* libstdc++.tbd */,
 				A9E9C9BD1E5D7827002F46BA /* libicucore.tbd */,
 				A9E9C9BB1E5D7819002F46BA /* libz.tbd */,
-				21E5B372AE999EF43535BA97 /* Pods_PercentAPP.framework */,
+				6D539546A4E81912D891BA67 /* libPods-PercentAPP.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -576,10 +662,13 @@
 			files = (
 				A90B6AC31E607C3900F2057E /* FontAwesome.ttf in Resources */,
 				A9D7503C1E5C804E00A9662F /* LaunchScreen.storyboard in Resources */,
+				A916E4691E6FB5DA00DDBB5E /* SetView.xib in Resources */,
 				A9D750391E5C804E00A9662F /* Assets.xcassets in Resources */,
 				A90B6B0A1E6162A300F2057E /* ShareSDKConfigFile.bundle in Resources */,
 				A90B6B1D1E6162A300F2057E /* ShareSDK.bundle in Resources */,
 				A90B6B1B1E6162A300F2057E /* README.txt in Resources */,
+				A916E4641E6966EC00DDBB5E /* LifeView.xib in Resources */,
+				A916E45A1E691B4600DDBB5E /* MyLeftView.xib in Resources */,
 				A90B6B161E6162A300F2057E /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A90B6B0D1E6162A300F2057E /* ShareSDKUI.bundle in Resources */,
 				A9D750371E5C804E00A9662F /* Main.storyboard in Resources */,
@@ -659,17 +748,24 @@
 			files = (
 				A9E9C98F1E5D23C0002F46BA /* STLoopProgressView+BaseConfiguration.m in Sources */,
 				A9E9C9931E5D27CD002F46BA /* BaseViewController.m in Sources */,
+				A9D896821E670B1400A8C42B /* UIView+leoAdd.m in Sources */,
 				A9E9C9901E5D23C0002F46BA /* STLoopProgressView.m in Sources */,
+				A916E4621E6966D300DDBB5E /* LifeView.m in Sources */,
 				A9E9C9CA1E5D97AD002F46BA /* UICountingLabel.m in Sources */,
 				A90B6AC61E607C3900F2057E /* MozTopAlertView.m in Sources */,
+				A9D8967F1E670B1400A8C42B /* LeftView.m in Sources */,
+				A9D896801E670B1400A8C42B /* LeftViewController.m in Sources */,
 				A90B6AC41E607C3900F2057E /* NSString+FontAwesome.m in Sources */,
 				A9D750311E5C804E00A9662F /* AppDelegate.m in Sources */,
 				A9E9C9CD1E5E6C13002F46BA /* MonthViewController.m in Sources */,
 				A9E9C9D11E5E7BF9002F46BA /* DayViewController.m in Sources */,
 				A90B6AC21E607C3900F2057E /* FAImageView.m in Sources */,
+				A916E4581E691B3C00DDBB5E /* MyLeftView.m in Sources */,
 				A9D7502E1E5C804E00A9662F /* main.m in Sources */,
 				A9E9C9811E5D1A4C002F46BA /* YearViewController.m in Sources */,
 				A90B6AC51E607C3900F2057E /* UIFont+FontAwesome.m in Sources */,
+				A9D896811E670B1400A8C42B /* PSDrawerManager.m in Sources */,
+				A916E4671E6FB5CE00DDBB5E /* SetView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,6 +933,7 @@
 					"$(PROJECT_DIR)/PercentAPP/ShareSDK/Support/PlatformConnector",
 					"$(PROJECT_DIR)/PercentAPP/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/PercentAPP/ShareSDK/Support/PlatformSDK/QQSDK",
+					"$(PROJECT_DIR)/PercentAPP/libraries",
 				);
 				INFOPLIST_FILE = PercentAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -870,6 +967,7 @@
 					"$(PROJECT_DIR)/PercentAPP/ShareSDK/Support/PlatformConnector",
 					"$(PROJECT_DIR)/PercentAPP/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/PercentAPP/ShareSDK/Support/PlatformSDK/QQSDK",
+					"$(PROJECT_DIR)/PercentAPP/libraries",
 				);
 				INFOPLIST_FILE = PercentAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
